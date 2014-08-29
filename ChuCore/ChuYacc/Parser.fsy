@@ -1,0 +1,37 @@
+﻿
+%{
+open Grm
+%}
+%start start
+%token <System.Int32> INT
+%token <System.String> STRING
+%token <System.String> NAME
+%token <System.String> EMOJI
+%token ARROW_LEFT ARROW_RIGHT
+%token LET IF FUN THEN ELSE
+%token EOF
+%type < Grm.STATEMENT > start
+%%
+
+start: Prog { $1 }
+Prog:
+	| STATEMENT  EOF { $1 }
+STATEMENT:
+	| ATOM { STATEMENT.ATOM($1)}
+	| LET ATOM ARROW_LEFT ATOM  { STATEMENT.LET($2,$4)}
+	| LET ATOM ARROW_RIGHT ATOM { STATEMENT.LET($2,$4)}
+	| IF EXPR THEN EXPR { STATEMENT.IF( $2, $4, EXPR.NONE ) }
+	| IF EXPR THEN EXPR ELSE EXPR { STATEMENT.IF( $2, $4, $6) }
+	| IF EXPR ELSE EXPR { STATEMENT.IF( $2, EXPR.NONE ,$4 ) }
+	| FUN ATOM PARAM ARROW_RIGHT EXPR { STATEMENT.FUN( $2,$3,$5)}
+PARAM:
+	| ATOM { PARAM.ATOM( $1 )}
+	| PARAM ATOM { PARAM.PARAM( $1,$2 )}
+EXPR:
+	| ATOM { EXPR.ATOM($1)}
+	| ATOM ATOM ATOM { EXPR.EXPR($1,$2,$3)}
+ATOM:
+	| INT		{ ATOM.INT($1) }
+	| STRING	{ ATOM.STRING($1) }
+	| EMOJI		{ ATOM.EMOJI($1) }
+	| NAME		{ ATOM.NAME($1) }

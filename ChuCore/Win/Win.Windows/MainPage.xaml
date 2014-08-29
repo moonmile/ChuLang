@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="Win.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Win"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button 
+            FontSize="40"
+            Click="OnClickEmoji1"
+            Content="絵文字１" HorizontalAlignment="Left" Margin="24,35,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lv" 
+            FontSize="40"
+                 Background="Gold"
+            HorizontalAlignment="Left" Height="360" Margin="27,224,0,0" VerticalAlignment="Top" Width="488"/>
+        <TextBox 
+            x:Name="text1"
+            FontSize="40"
+            Background="Purple"
+            HorizontalAlignment="Left" Margin="27,126,0,0" TextWrapping="Wrap" 
+            Text="🚀🐶🐱👈🐶'♡'🐱" VerticalAlignment="Top" Height="93" Width="488"/>
+
+    </Grid>
+</Page>

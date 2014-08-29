@@ -1,0 +1,50 @@
+﻿{
+module Lexer
+open System
+open Parser
+open Microsoft.FSharp.Text.Lexing
+
+let lexeme lexbuf =
+    LexBuffer<char>.LexemeString lexbuf
+
+let lexstr lexbuf =
+    let s = LexBuffer<char>.LexemeString lexbuf
+    s.Substring(1, s.Length-2 )
+
+let isEmoji c = 
+    '\uD800' <= c && c <= '\uDBFF' 
+let isEmoji2 c = 
+    '\uDC00' <= c && c <= '\uDFFF' 
+}
+
+
+let digit = ['0'-'9']
+let whitespace = [' ' '\t']
+let newline = ('\n' | '\r' '\n')
+let alhpa = ['A'-'Z' 'a'-'z' '_']
+let opcode = ['+' '-' '*' '/']
+
+rule tokenize = parse
+| whitespace { tokenize lexbuf }
+| newline    { tokenize lexbuf }
+// keyword
+| ("let"|"💘")		{ LET }
+| ("<-"|"👈")		{ ARROW_LEFT }
+| ("->"|"👉")		{ ARROW_RIGHT }
+| ("fun"|"🚀")		{ FUN }
+| ("if"|"🚥")		{ IF }
+| ("then"|"👼")		{ THEN }
+| ("else"|"👿")		{ ELSE }
+// opcode
+| opcode+	{ OP(lexeme lexbuf ) }
+// emoji
+| ['\uD800'-'\uDBFF'] ['\uDC00'-'\uDFFF'] { EMOJI(lexeme lexbuf) }
+// numeric
+| '-'?digit+			{ INT (Int32.Parse(lexeme lexbuf)) }
+| ''' [^''']* ''' { STRING(lexstr lexbuf) }
+| '"' [^'"']* '"' { STRING(lexstr lexbuf) } 
+| ['A'-'Z' 'a'-'z' '_' ''']['A'-'Z' 'a'-'z' '_' '0'-'9' ''']* { NAME (lexeme lexbuf) }
+// symbol
+| [^' '] { EMOJI(lexeme lexbuf) }
+// EOF
+| eof { EOF }

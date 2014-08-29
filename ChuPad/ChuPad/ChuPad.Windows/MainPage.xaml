@@ -1,0 +1,79 @@
+﻿<Page
+    x:Class="ChuPad.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ChuPad"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style x:Key="kbd" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="55" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
+
+    <Grid 
+        x:Name="grid"
+        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="300"/>
+        </Grid.RowDefinitions>
+        <TextBlock 
+            HorizontalAlignment="Left" Margin="34,32,0,0" TextWrapping="Wrap" 
+            Text="Chu💋Pad" VerticalAlignment="Top" 
+            Style="{StaticResource HeaderTextBlockStyle}" Width="634" FontFamily="Segoe UI Emoji"/>
+        <TextBlock
+            x:Name="text1"
+            FontSize="50"
+            HorizontalAlignment="Left" Margin="34,35,0,0" Grid.Row="1" TextWrapping="Wrap" 
+            VerticalAlignment="Top" Height="323" Width="519">Let a = "chu"</TextBlock>
+        <Grid Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="kLet"    Text="💘" Style="{StaticResource kbd}"/>
+            <TextBlock x:Name="kLeft"   Text="👈" Style="{StaticResource kbd}" Grid.Column="1" />
+            <TextBlock x:Name="kRight"  Text="👉" Style="{StaticResource kbd}" Grid.Column="2" />
+            <TextBlock x:Name="kCat"    Text="🐱" Style="{StaticResource kbd}" Grid.Column="3" />
+            <TextBlock x:Name="kDog"    Text="🐶" Style="{StaticResource kbd}" Grid.Column="4" />
+            <TextBlock x:Name="kIf"     Text="🚥" Style="{StaticResource kbd}" Grid.Row="1" Grid.Column="0" />
+            <TextBlock x:Name="kThen"   Text="👼" Style="{StaticResource kbd}" Grid.Row="1" Grid.Column="1" />
+            <TextBlock x:Name="kElse"   Text="👿" Style="{StaticResource kbd}" Grid.Row="1" Grid.Column="2" />
+            <TextBlock x:Name="kEqual"  Text="🙆" Style="{StaticResource kbd}" Grid.Row="1" Grid.Column="3" />
+            <TextBlock x:Name="kNEqual" Text="🙅" Style="{StaticResource kbd}" Grid.Row="1" Grid.Column="4" />
+            <TextBlock x:Name="kFor"    Text="🏃" Style="{StaticResource kbd}" Grid.Row="2" Grid.Column="0" />
+            <TextBlock x:Name="kTo"     Text="🚚" Style="{StaticResource kbd}" Grid.Row="2" Grid.Column="1" />
+            <TextBlock x:Name="kFun"    Text="🚀" Style="{StaticResource kbd}" Grid.Row="2" Grid.Column="2" />
+            <TextBlock x:Name="kTrue"   Text="👍" Style="{StaticResource kbd}" Grid.Row="2" Grid.Column="3" />
+            <TextBlock x:Name="kFalse"  Text="👎" Style="{StaticResource kbd}" Grid.Row="2" Grid.Column="4" />
+            <TextBlock x:Name="kList"   Text="👫" Style="{StaticResource kbd}" Grid.Row="3" Grid.Column="0" />
+            <TextBlock x:Name="kHead"   Text="🎩" Style="{StaticResource kbd}" Grid.Row="3" Grid.Column="1" />
+            <TextBlock x:Name="kTail"   Text="👢" Style="{StaticResource kbd}" Grid.Row="3" Grid.Column="2" />
+            <TextBlock x:Name="kPrint"  Text="💋" Style="{StaticResource kbd}" Grid.Row="3" Grid.Column="3" />
+            <TextBlock x:Name="kCase"   Text="👏" Style="{StaticResource kbd}" Grid.Row="3" Grid.Column="4" />
+
+            <TextBlock x:Name="kClear" Text="C" Style="{StaticResource kbd}" Grid.Row="0" Grid.Column="5" />
+            <TextBlock x:Name="kMoveLeft" Text="←" Style="{StaticResource kbd}" Grid.Row="1" Grid.Column="5" />
+            <TextBlock x:Name="kMoveRight" Text="→" Style="{StaticResource kbd}" Grid.Row="2" Grid.Column="5" />
+            <TextBlock x:Name="kEval" Text="E" Style="{StaticResource kbd}" Grid.Row="3" Grid.Column="5" />
+        </Grid>
+        <local:KeyControl 
+            x:Name="keycode"
+            HorizontalAlignment="Left" Margin="303,35,0,0" VerticalAlignment="Top" Height="37" Width="39"/>
+    </Grid>
+</Page>
