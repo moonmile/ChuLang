@@ -18,6 +18,6 @@ Chu is Emoji Language to run like Functinal Language.
 
 http://chu-lang.com/
 or
-http://hajigmet-no-chu.com/
+http://hajimete-no-chu.com/
 
 
